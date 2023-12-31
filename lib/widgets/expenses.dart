@@ -1,5 +1,6 @@
 import 'package:expense_tracking/models/expense.dart';
 import 'package:expense_tracking/widgets/list/expenses_list.dart';
+import 'package:expense_tracking/widgets/nex_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -12,51 +13,61 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpenseState extends State<Expenses> {
+  void _openAddExpenseDialog() {
+    showModalBottomSheet(context: context, builder: (ctx) => NewExpense());
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Expense> expenses = [
+    List<Expense> _registered_expenses = [
       Expense(
           title: 'Groceries',
-          amount: 100.00,
+          amount: 10.00,
           date: DateTime.now(),
           category: Category.Food),
       Expense(
-          title: 'Groceries',
-          amount: 100.00,
+          title: 'Money from job',
+          amount: 3750.00,
+          date: DateTime.now(),
+          category: Category.Work),
+      Expense(
+          title: 'Glovo',
+          amount: 50.00,
           date: DateTime.now(),
           category: Category.Food),
       Expense(
-          title: 'Groceries',
+          title: 'Taxi',
           amount: 100.00,
           date: DateTime.now(),
-          category: Category.Food),
+          category: Category.Travel),
       Expense(
-          title: 'Groceries',
-          amount: 100.00,
+          title: 'rent',
+          amount: 100000.00,
           date: DateTime.now(),
-          category: Category.Food),
+          category: Category.Leisure),
       Expense(
-          title: 'Groceries',
-          amount: 100.00,
+          title: 'Clothes zara',
+          amount: 150.00,
           date: DateTime.now(),
-          category: Category.Food),
+          category: Category.Shopping),
       Expense(
-          title: 'Groceries',
+          title: 'Iqos',
           amount: 100.00,
           date: DateTime.now(),
-          category: Category.Food),
-      Expense(
-          title: 'Groceries',
-          amount: 100.00,
-          date: DateTime.now(),
-          category: Category.Food),
+          category: Category.Shopping),
     ];
     return Scaffold(
+        appBar: AppBar(title: const Text('Expense Tracker'), actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: _openAddExpenseDialog,
+          )
+        ]),
         body: Column(
-      children: [
-        const Text('The chart'),
-        Expanded(child: ExpensesList(expenses: expenses))
-      ],
-    ));
+          children: [
+            const Text('The chart'),
+            Expanded(child: ExpensesList(expenses: _registered_expenses))
+          ],
+        ));
   }
 }

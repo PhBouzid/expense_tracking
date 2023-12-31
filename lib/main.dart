@@ -3,9 +3,10 @@ import 'package:expense_tracking/widgets/expenses.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
+    MaterialApp(
       title: 'Expense Tracker',
-      home: Expenses(),
+      theme: ThemeData(useMaterial3: true),
+      home: const Expenses(),
     ),
   );
 }
